@@ -13,7 +13,7 @@ public class Main extends JFrame {
 	
 	public Main() {
 		setTitle("Paint");
-		setSize(600, 600);
+		setSize(800, 600);
 		setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 		Menu menu = new Menu();
 		Canvas canvas = new Canvas();

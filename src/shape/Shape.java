@@ -11,8 +11,8 @@ public abstract class Shape {
 	protected Color color2; // mau nen
 	
 	public Shape() {
-		fill = true;
-		size = 7;
+		fill = false;
+		size = 8;
 		color1 = Color.BLACK;
 		color2 = Color.ORANGE;
 	}

@@ -4,7 +4,6 @@ public class SixPointStar extends Polygon {
 
 	public SixPointStar(int x, int y, int x1, int y1) {
 		int avgX = (x + x1) / 2;
-		int avgY = (y + y1) / 2;
 		int xMin = Math.min(x, x1);
 		int xMax = Math.max(x, x1);
 		int yMin = Math.min(y, y1);

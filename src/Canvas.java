@@ -22,7 +22,7 @@ public class Canvas extends JPanel implements MouseListener {
 	private Point startDrag, endDrag;
 	
 	public Canvas() {
-		setPreferredSize(new Dimension(600, 400));
+		setPreferredSize(new Dimension(800, 400));
 		setBackground(Color.WHITE);
 		setFocusable(true);
 		shapes = new ArrayList<Shape>();
@@ -47,8 +47,24 @@ public class Canvas extends JPanel implements MouseListener {
 		}
 		
 		if(startDrag != null && endDrag != null) {
-			//////
+			makeShape(startDrag.x, startDrag.y, endDrag.x, endDrag.y).draw(g2);
 		}
+	}
+	
+	private Shape makeShape(int x, int y, int x1, int y1) {
+		switch(Tools.shape) {
+			case Tools.LINE:
+				return new Line(x, y, x1, y1);
+			case Tools.ELLIPSE:
+				return new Ellipse(x, y, x1, y1);
+			case Tools.RECTANGLE:
+				return new Rectangle(x, y, x1, y1);
+			case Tools.ROUNDEDRECTANGLE:
+				return new RoundedRectangle(x, y, x1, y1);
+			case Tools.TRIANGLE:
+				return new Triangle(x, y, x1, y1);
+		}
+		return null;
 	}
 	
 
@@ -75,7 +91,7 @@ public class Canvas extends JPanel implements MouseListener {
 	
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		shapes.add(new HorizontalArrow(startDrag.x, startDrag.y, e.getX(), e.getY()));
+		shapes.add(makeShape(startDrag.x, startDrag.y, e.getX(), e.getY()));
 		startDrag = endDrag = null;
 		repaint();
 	}

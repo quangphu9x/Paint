@@ -1,6 +1,7 @@
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,16 +11,9 @@ public class Tools extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	
-	private JLabel pencilTool;
-	private JLabel fillTool;
-	private JLabel textTool;
-	private JLabel eraserTool;
+	private Button[] toolsButton;
+	private Button[] shapesButton;
 	
-	private JLabel lineTool;
-	private JLabel ellipseTool;
-	private JLabel rectangleTool;
-	private JLabel roundedRectangleTool;
-	private JLabel triangleTool;
 	public static int shape = 0;
 	public static final int LINE = 0;
 	public static final int ELLIPSE = 1;
@@ -30,39 +24,30 @@ public class Tools extends JPanel implements ActionListener {
 	//public 
 	
 	public Tools() {
-		setPreferredSize(new Dimension(600, 50));
+		setPreferredSize(new Dimension(800, 50));
 		setBackground(Color.YELLOW);
 		
 		JPanel panelTools = new JPanel();
-		pencilTool = new JLabel();
-		pencilTool.setIcon(new ImageIcon(getClass().getResource("/img/pencil.png")));
-		fillTool = new JLabel();
-		fillTool.setIcon(new ImageIcon(getClass().getResource("/img/bucket.png")));
-		textTool = new JLabel();
-		textTool.setIcon(new ImageIcon(getClass().getResource("/img/text.png")));
-		eraserTool = new JLabel();
-		eraserTool.setIcon(new ImageIcon(getClass().getResource("/img/eraser.png")));
-		panelTools.add(pencilTool);
-		panelTools.add(fillTool);
-		panelTools.add(textTool);
-		panelTools.add(eraserTool);
+		toolsButton = new Button[4];
+		String[] icons = new String[] {"pencil", "bucket", "text", "eraser"};
+		for(int i = 0; i < 4; i++) {
+			toolsButton[i] = new Button();
+			toolsButton[i].setIcon(new ImageIcon(getClass().getResource("/img/" + icons[i] + ".png")));
+			toolsButton[i].addActionListener(this);
+			panelTools.add(toolsButton[i]);
+		}
+		panelTools.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 		
 		JPanel panelShapes = new JPanel();
-		lineTool = new JLabel();
-		lineTool.setIcon(new ImageIcon(getClass().getResource("/img/line.png")));
-		ellipseTool = new JLabel();
-		ellipseTool.setIcon(new ImageIcon(getClass().getResource("/img/ellipse.png")));
-		rectangleTool = new JLabel();
-		rectangleTool.setIcon(new ImageIcon(getClass().getResource("/img/rectangle.png")));
-		roundedRectangleTool = new JLabel();
-		roundedRectangleTool.setIcon(new ImageIcon(getClass().getResource("/img/roundedrectangle.png")));
-		triangleTool = new JLabel();
-		triangleTool.setIcon(new ImageIcon(getClass().getResource("/img/triangle.png")));
-		panelShapes.add(lineTool);
-		panelShapes.add(ellipseTool);
-		panelShapes.add(rectangleTool);
-		panelShapes.add(roundedRectangleTool);
-		panelShapes.add(triangleTool);
+		shapesButton = new Button[5];
+		icons = new String[] {"line", "ellipse", "rectangle", "roundedrectangle", "triangle"};
+		for(int i = 0; i < 5; i++) {
+			shapesButton[i] = new Button();
+			shapesButton[i].setIcon(new ImageIcon(getClass().getResource("/img/" + icons[i] + ".png")));
+			shapesButton[i].addActionListener(this);
+			panelShapes.add(shapesButton[i]);
+		}
+		panelShapes.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 		
 		JPanel panelColors = new JPanel();
 		
@@ -72,7 +57,11 @@ public class Tools extends JPanel implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		
+		for(int i = 0; i < 5; i++)
+			if(e.getSource().equals(shapesButton[i])) {
+				shape = i;
+				break;
+			}
 	}
 
 }
