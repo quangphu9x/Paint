@@ -12,7 +12,7 @@ public abstract class Shape {
 	
 	public Shape() {
 		fill = false;
-		size = 8;
+		size = 1;
 		color1 = Color.BLACK;
 		color2 = Color.ORANGE;
 	}
@@ -32,7 +32,6 @@ public abstract class Shape {
 	public void setColor2(Color color) {
 		color2 = color;
 	}
-	
 	public abstract void draw(Graphics2D g);
 	
 }
